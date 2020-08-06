@@ -3,19 +3,19 @@ import Styles from './login-styles.scss'
 import { Footer, FormStatus, Input, LoginHeader } from '@/presentation/components'
 import { FormContext } from '@/presentation/contexts'
 
-type StateProps = {
-  isLoading: boolean
-  errorMessage: string
-}
 const Login: React.FC = () => {
-  const [state] = useState<StateProps>({
-    isLoading: false,
-    errorMessage: ''
+  const [state] = useState({
+    isLoading: false
+  })
+  const [errorState] = useState({
+    email: 'Required',
+    password: 'Required',
+    main: ''
   })
   return (
     <div className={Styles.login}>
       <LoginHeader/>
-      <FormContext.Provider value={state}>
+      <FormContext.Provider value={{ state, errorState }}>
         <form className={Styles.form}>
           <h2>Login</h2>
           <Input type="email" name="email" placeholder="your e-mail"/>
